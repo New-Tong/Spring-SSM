@@ -1,6 +1,6 @@
 package com.shansong.test;
 
-import com.shansong.mapper.UserMapper;
+import com.shansong.UserMapper;
 import com.shansong.pojo.User;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;

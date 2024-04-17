@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace等于mapper接口类的全限定名,这样实现对应 -->
+<mapper namespace="com.shansong.OrderMapper">
+    <resultMap id="orderMap" type="order">
+        <id property="orderId" column="order_id"/>
+        <result property="orderName" column="order_name"/>
+        <result property="customerId" column="customer_id"/>
+        <association property="customer" javaType="customer">
+            <id property="customerId" column="customer_id"/>
+            <result property="customerName" column="customer_name"/>
+        </association>
+    </resultMap>
+
+    <select id="queryOrderById" resultMap="orderMap">
+        select order_id, order_name, o.customer_id, customer_name
+        from t_order o inner join t_customer c on o.customer_id = c.customer_id
+        where order_id = #{id}
+    </select>
+
+</mapper>
